@@ -1,0 +1,24 @@
+.supercontainer {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url('/battlegrounds.jpg');
+}
+
+
+.team1{
+  position: static;
+  margin-left: 48%;
+  height: 47vh;
+  width: 47vh
+}
+
+.team2{
+  position: static;
+  margin-right: 40%;
+  margin-top: -11%;
+  height: 45vh;
+  width: 45vh;
+}

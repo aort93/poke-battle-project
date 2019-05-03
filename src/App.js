@@ -5,6 +5,7 @@ import IndexPage from './IndexPage'
 import Player1Select from './Player1Select'
 import Player2Select from './Player2Select'
 import SelectContainer from './SelectContainer'
+import Battlegrounds from './Battlegrounds'
 
 class App extends React.Component {
   state = {
@@ -51,17 +52,19 @@ class App extends React.Component {
                 handleRemoveFromTeam={this.handleRemoveFromTeam2}
 
                />
+      case "battle":
+        return <Battlegrounds team1={this.state.team1} team2={this.state.team2}/>
       default:
         return null
     }
   }
 
   handleSelect = (poke, player) => {
-    if ( !this.state.team1.includes(poke) && player === 'p1' && this.state.team1.length < 6) {
+    if ( !this.state.team1.includes(poke) && player === 'p1' && this.state.team1.length < 1) {
       this.setState({
         team1: [...this.state.team1, poke]
       })
-    } else if (!this.state.team2.includes(poke) && player === 'p2' && this.state.team2.length < 6) {
+    } else if (!this.state.team2.includes(poke) && player === 'p2' && this.state.team2.length < 1) {
       this.setState({
         team2: [...this.state.team2, poke]
       })

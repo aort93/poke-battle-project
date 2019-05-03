@@ -1,31 +1,21 @@
 import React from 'react'
 import PokeCard from './PokeCard'
 import SelectContainer from './SelectContainer'
+import v4 from 'uuid'
 
 
 class Player1Select extends React.Component {
 
   renderPoke = () => {
     return this.props.pokemons.map(pokemon => {
-      return <PokeCard player={'p1'} pokemon={pokemon} handleSelect={this.props.handleSelect} />
+      return <PokeCard player={'p1'} key={ v4() } pokemon={pokemon} handleSelect={this.props.handleSelect} />
     })
   }
 
-  // master = () => {
-  //   while(this.state.count <= 6) {
-  //     return this.renderContainer()
-  //   }
-  // }
-  //
-  // increaseCount = () => {
-  //   this.setState(prevState => ({
-  //     count: prevState.count + 1
-  //   }))
-  // }
 
   renderContainer = () => {
     return this.props.team.map(pokemon => {
-        return <SelectContainer pokemon={pokemon} handleRemoveFromTeam={this.props.handleRemoveFromTeam}/>
+        return <SelectContainer key={v4()} pokemon={pokemon} handleRemoveFromTeam={this.props.handleRemoveFromTeam}/>
       })
     }
 
@@ -33,9 +23,10 @@ class Player1Select extends React.Component {
   render() {
     return (
       <div>
+        <h1>Trainer 1</h1>
         {this.renderContainer()}
         <button onClick={() => this.props.handlePages('index')}>New Battle</button>
-        <button onClick={() => this.props.handlePages('p2')}>P2 Select</button>
+        { this.props.team.length === 1 ? <button onClick={() => this.props.handlePages('p2')}>P2 Select</button> : null }
         {this.renderPoke()}
       </div>
     )

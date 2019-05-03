@@ -2,10 +2,6 @@ import React from 'react'
 
 const PokeCard = (props) => {
   const handleClick = () => {
-     // if (props.count <= 6){
-     //   props.increaseCount()
-
-     // }
      return props.handleSelect(props.pokemon, props.player)
   }
 
