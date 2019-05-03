@@ -40,6 +40,7 @@ class App extends React.Component {
                 handlePages={this.handleStart}
                 team={this.state.team1}
                 handleSelect={this.handleSelect}
+                handleRemoveFromTeam={this.handleRemoveFromTeam1}
                />
       case "p2":
         return <Player2Select
@@ -47,6 +48,8 @@ class App extends React.Component {
                 handlePages={this.handleStart}
                 team={this.state.team2}
                 handleSelect={this.handleSelect}
+                handleRemoveFromTeam={this.handleRemoveFromTeam2}
+
                />
       default:
         return null
@@ -54,15 +57,33 @@ class App extends React.Component {
   }
 
   handleSelect = (poke, player) => {
-    if (player === 'p1') {
+    if ( !this.state.team1.includes(poke) && player === 'p1' && this.state.team1.length < 6) {
       this.setState({
         team1: [...this.state.team1, poke]
       })
-    } else if (player === 'p2') {
+    } else if (!this.state.team2.includes(poke) && player === 'p2' && this.state.team2.length < 6) {
       this.setState({
         team2: [...this.state.team2, poke]
       })
     }
+  }
+
+  handleRemoveFromTeam1 = (pokeObj) => {
+    const removed = [...this.state.team1].filter(poke => {
+      return poke.name !== pokeObj.name
+    })
+    this.setState ({
+      team1: removed
+    })
+  }
+
+  handleRemoveFromTeam2 = (pokeObj) => {
+    const removed = [...this.state.team2].filter(poke => {
+      return poke.name !== pokeObj.name
+    })
+    this.setState ({
+      team2: removed
+    })
   }
 
 

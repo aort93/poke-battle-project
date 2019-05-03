@@ -12,7 +12,9 @@ class Player2Select extends React.Component {
 
   renderContainer = () => {
     return this.props.team.map(pokemon => {
-      return <SelectContainer pokemon={pokemon} />
+      return <SelectContainer pokemon={pokemon}
+      handleRemoveFromTeam={this.props.handleRemoveFromTeam}
+              />
     })
   }
 
