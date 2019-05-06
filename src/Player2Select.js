@@ -28,7 +28,7 @@ class Player2Select extends React.Component {
         {this.renderContainer()}
         <button onClick={() => this.props.handlePages('index')}>New Battle</button>
         <button onClick={() => this.props.handlePages('p1')}>P1 Select</button>
-        { this.props.team.length === 1 ? <button onClick={() => this.props.handlePages('battle')}>Battle!</button> : null }
+        { this.props.team.length === 6 ? <button onClick={() => this.props.handlePages('battle')}>Battle!</button> : null }
         {this.renderPoke()}
       </div>
     )
