@@ -11,33 +11,86 @@ class Battlegrounds extends React.Component {
     toggle: true,
     team1pokemonHP: 100,
     team2pokemonHP: 100,
+    team1Idx: 0,
+    team2Idx: 0,
+    winner1: false,
+    winner2: false
   }
 
   handleClick = () => {
-    if (this.state.toggle) {
-      this.setState((prevState) => ({
-        team2pokemonHP: prevState.team2pokemonHP - this.props.team1[0].move.damage
-      }))
+    let hpAfterDmg1 = this.state.team1pokemonHP - this.props.team2[this.state.team2Idx].move.damage
+    let hpAfterDmg2 = this.state.team2pokemonHP - this.props.team1[this.state.team1Idx].move.damage
+    let nextIdx1 = this.state.team1Idx + 1
+    let nextIdx2 = this.state.team2Idx + 1
+
+    if (this.state.team1Idx < 6 && this.state.team2Idx < 6) {
+      if ( this.state.toggle ) { //when its trainer 1
+        if ( hpAfterDmg2 <= 0) {
+          if (this.state.team2Idx + 1 > 5) {
+            this.setState((prevState) => ({
+              team2pokemonHP: 100,
+              team2Idx: prevState.team2Idx + 1,
+              toggle: !prevState.toggle
+            }))
+          } else {
+            console.log('hi')
+          }
+        } else {
+          this.setState((prevState) => ({
+              team2pokemonHP: prevState.team2pokemonHP - this.props.team1[this.state.team1Idx].move.damage,
+              toggle: !prevState.toggle
+          }))
+        }
+      } else { //when its trainer 2
+        if ( hpAfterDmg1 <= 0) {
+          if( this.state.team1Idx + 1 > 5) {
+            this.setState((prevState) => ({
+              team1pokemonHP: 100,
+              team1Idx: prevState.team1Idx + 1,
+              toggle: !prevState.toggle
+            }))
+          } else {
+            console.log('please work!!!!!')
+          }
+        } else {
+          this.setState((prevState) => ({
+              team1pokemonHP: prevState.team1pokemonHP - this.props.team2[this.state.team2Idx].move.damage,
+              toggle: !prevState.toggle
+          }))
+        }
+      }
     } else {
+      console.log('done')
+    }
+
+
+
+    if (this.state.team1Idx === 6 && this.state.team2Idx !== 6) {
       this.setState((prevState) => ({
-        team1pokemonHP: prevState.team1pokemonHP - this.props.team2[0].move.damage
+        winner2: !prevState.winner2
+      }))
+    } else if (this.state.team1Idx !== 6 && this.state.team2Idx === 6) {
+      this.setState((prevState) => ({
+        winner2: !prevState.winner1
       }))
     }
-    this.setState((prevState) => ({
-      toggle: !prevState.toggle
-    }))
+
   }
 
   render() {
+    console.log(this.state.winner1, this.state.winner2)
+    console.log(this.state.team1Idx, this.state.team2Idx)
     return (
       <div className='supercontainer'>
         <h1>Time to Battle</h1>
-        <img className='team1' src={this.props.team1[0].frontURL} />
-        <img className='team2' src={this.props.team2[0].backURL} />
+        <img className='team1' src={this.props.team1[this.state.team1Idx].frontURL} />
+        <img className='team2' src={this.props.team2[this.state.team2Idx].backURL} />
         <MoveContainer
           team1={this.props.team1}
           team2={this.props.team2}
           toggle={this.state.toggle}
+          team1Idx={this.state.team1Idx}
+          team2Idx={this.state.team2Idx}
           handleClick={this.handleClick}
           team1pokemonHP={this.state.team1pokemonHP}
           team2pokemonHP={this.state.team2pokemonHP}

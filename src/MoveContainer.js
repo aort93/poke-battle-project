@@ -3,12 +3,11 @@ import React from 'react'
 class MoveContainer extends React.Component {
 
   render() {
-    console.log(this.props.team1[0], this.props.team2[0])
     return (
       <div>
         {this.props.toggle ?
           <div onClick={this.props.handleClick}>
-            <p1 id='move1'>{this.props.team1[0].move.name}</p1>
+            <p1 id='move1'>{this.props.team1[this.props.team1Idx].move.name}</p1>
             <br/>
             <p2 id='move2'>Water</p2>
             <br/>
@@ -20,7 +19,7 @@ class MoveContainer extends React.Component {
           </div>
         :
           <div onClick={this.props.handleClick}>
-            <p1 id='move1'>{this.props.team2[0].move.name}</p1>
+            <p1 id='move1'>{this.props.team2[this.props.team2Idx].move.name}</p1>
             <br/>
             <p2 id='move2'>Water</p2>
             <br/>
