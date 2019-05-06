@@ -1,6 +1,7 @@
 import React from 'react'
 import PokeCard from './PokeCard'
 import SelectContainer from './SelectContainer'
+import { Card } from 'semantic-ui-react'
 import v4 from 'uuid'
 
 
@@ -25,11 +26,14 @@ class Player2Select extends React.Component {
     return (
       <div>
         <h1>Trainer 2</h1>
-        {this.renderContainer()}
-        <button onClick={() => this.props.handlePages('index')}>New Battle</button>
-        <button onClick={() => this.props.handlePages('p1')}>P1 Select</button>
-        { this.props.team.length === 1 ? <button onClick={() => this.props.handlePages('battle')}>Battle!</button> : null }
-        {this.renderPoke()}
+        <h2>Team</h2>
+        <Card.Group itemsPerRow={6}>{this.renderContainer()}</Card.Group>
+        <br/>
+        <button class="ui button" onClick={() => this.props.handlePages('index')}>New Battle</button>
+        <button class="ui button" onClick={() => this.props.handlePages('p1')}>P1 Select</button>
+        { this.props.team.length === 6 ? <button class="ui button" onClick={() => this.props.handlePages('battle')}>Battle!</button> : null }
+        <h1>Pokemons</h1>
+        <Card.Group itemsPerRow={5}>{this.renderPoke()}</Card.Group>
       </div>
     )
   }

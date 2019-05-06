@@ -22,3 +22,16 @@
   height: 45vh;
   width: 45vh;
 }
+
+.App-header {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url('/background.png');
+}
+
+/* .team1sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+} */

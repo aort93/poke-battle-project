@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'semantic-ui-react'
 import './App.css';
 
 
@@ -7,7 +8,7 @@ class IndexPage extends Component {
     return (
       <header className="App-header">
         <h1>Poke-Battlegrounds!</h1>
-        <button onClick={() => this.props.handlePages('p1')}>Start</button>
+        <button class="ui button" onClick={() => this.props.handlePages('p1')}>Play</button>
       </header>
     )
   }
