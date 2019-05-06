@@ -81,25 +81,53 @@ class Battlegrounds extends React.Component {
 
   }
 
+  battlegroundsStateReset = () => {
+    this.setState({
+      toggle: true,
+      team1pokemonHP: 100,
+      team2pokemonHP: 100,
+      team1Idx: 0,
+      team2Idx: 0,
+      winner1: false,
+      winner2: false
+    })
+  }
+
+  handleClickFinal = () => {
+    this.battlegroundsStateReset()
+    this.props.reset("index")
+  }
+
   render() {
     console.log(this.state.winner1, this.state.winner2)
     console.log(this.state.team1Idx, this.state.team2Idx)
     return (
-      <div className='supercontainer'>
-        <h1>Time to Battle</h1>
-        <img className='team1' src={this.props.team1[this.state.team1Idx].frontURL} />
-        <img className='team2' src={this.props.team2[this.state.team2Idx].backURL} />
-        <MoveContainer
-          team1={this.props.team1}
-          team2={this.props.team2}
-          toggle={this.state.toggle}
-          team1Idx={this.state.team1Idx}
-          team2Idx={this.state.team2Idx}
-          handleClick={this.handleClick}
-          team1pokemonHP={this.state.team1pokemonHP}
-          team2pokemonHP={this.state.team2pokemonHP}
-        />
-      </div>
+       (this.state.winner2 || this.state.winner1) ?
+        <div>
+          <h1>Winner</h1>
+          <br/>
+          <br/>
+          <h2>Is.....</h2>
+          {this.state.winner2 ? "Player 2" : "Player 1"}
+          <button onClick={this.handleClickFinal}>Reset</button>
+        </div>
+        :
+        <div className='supercontainer'>
+          <h1>Time to Battle</h1>
+          <img className='team1' src={this.props.team1[this.state.team1Idx].frontURL} />
+          <img className='team2' src={this.props.team2[this.state.team2Idx].backURL} />
+          <MoveContainer
+            team1={this.props.team1}
+            team2={this.props.team2}
+            toggle={this.state.toggle}
+            team1Idx={this.state.team1Idx}
+            team2Idx={this.state.team2Idx}
+            handleClick={this.handleClick}
+            team1pokemonHP={this.state.team1pokemonHP}
+            team2pokemonHP={this.state.team2pokemonHP}
+          />
+        </div>
+
     )
   }
 }
