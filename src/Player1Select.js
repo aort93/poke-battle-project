@@ -1,7 +1,9 @@
 import React from 'react'
 import PokeCard from './PokeCard'
 import SelectContainer from './SelectContainer'
+import { Card } from 'semantic-ui-react'
 import v4 from 'uuid'
+import { StickyContainer, Sticky } from 'react-sticky'
 
 
 class Player1Select extends React.Component {
@@ -24,10 +26,15 @@ class Player1Select extends React.Component {
     return (
       <div>
         <h1>Trainer 1</h1>
-        {this.renderContainer()}
-        <button onClick={() => this.props.handlePages('index')}>New Battle</button>
-        { this.props.team.length === 1 ? <button onClick={() => this.props.handlePages('p2')}>P2 Select</button> : null }
-        {this.renderPoke()}
+          <div className="team1sticky">
+              <h2>Team</h2>
+              <Card.Group itemsPerRow={6}>{this.renderContainer()}</Card.Group>
+          </div>
+          <br/>
+          <button class="ui button" onClick={() => this.props.handlePages('index')}>New Battle</button>
+          { this.props.team.length === 6 ? <button class="ui button" onClick={() => this.props.handlePages('p2')}>P2 Select</button> : null }
+          <h1>Pokemons</h1>
+          <Card.Group itemsPerRow={5}>{this.renderPoke()}</Card.Group>
       </div>
     )
   }
