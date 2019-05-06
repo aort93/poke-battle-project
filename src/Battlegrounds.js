@@ -26,14 +26,16 @@ class Battlegrounds extends React.Component {
     if (this.state.team1Idx < 6 && this.state.team2Idx < 6) {
       if ( this.state.toggle ) { //when its trainer 1
         if ( hpAfterDmg2 <= 0) {
-          if (this.state.team2Idx + 1 > 5) {
+          if (this.state.team2Idx < 5) {
             this.setState((prevState) => ({
               team2pokemonHP: 100,
               team2Idx: prevState.team2Idx + 1,
               toggle: !prevState.toggle
             }))
           } else {
-            console.log('hi')
+            this.setState((prevState) => ({
+              winner1: !prevState.winner1
+            }))
           }
         } else {
           this.setState((prevState) => ({
@@ -43,14 +45,16 @@ class Battlegrounds extends React.Component {
         }
       } else { //when its trainer 2
         if ( hpAfterDmg1 <= 0) {
-          if( this.state.team1Idx + 1 > 5) {
+          if( this.state.team1Idx < 5) {
             this.setState((prevState) => ({
               team1pokemonHP: 100,
               team1Idx: prevState.team1Idx + 1,
               toggle: !prevState.toggle
             }))
           } else {
-            console.log('please work!!!!!')
+            this.setState((prevState) => ({
+              winner2: !prevState.winner2
+            }))
           }
         } else {
           this.setState((prevState) => ({
