@@ -50,10 +50,9 @@ class App extends React.Component {
                 team={this.state.team2}
                 handleSelect={this.handleSelect}
                 handleRemoveFromTeam={this.handleRemoveFromTeam2}
-
                />
       case "battle":
-        return <Battlegrounds team1={this.state.team1} team2={this.state.team2}/>
+        return <Battlegrounds team1={this.state.team1} team2={this.state.team2} reset={this.resetGame}/>
       default:
         return null
     }
@@ -69,6 +68,14 @@ class App extends React.Component {
         team2: [...this.state.team2, poke]
       })
     }
+  }
+
+  resetGame = () => {
+    this.setState({
+      page: "index",
+      team1: [],
+      team2: []
+    })
   }
 
   handleRemoveFromTeam1 = (pokeObj) => {
