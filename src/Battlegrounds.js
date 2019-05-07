@@ -121,7 +121,7 @@ class Battlegrounds extends React.Component {
       </div>
       :
         <div className='supercontainer'>
-          <h1>Time to Battle</h1>
+          <h1>Poke-Battlegrounds</h1>
           <div className="battle-grid">
             <div>
             <h3>Trainer 1: {this.props.team1[this.state.team1Idx].name}</h3>
@@ -136,6 +136,18 @@ class Battlegrounds extends React.Component {
             <div>
               <h3>Trainer 2: {this.props.team2[this.state.team2Idx].name}</h3>
               <Progress percent={this.state.team2pokemonHP} indicating />
+              <div className='battle-grid'>
+              <MoveContainer
+                team1={this.props.team1}
+                team2={this.props.team2}
+                toggle={this.state.toggle}
+                team1Idx={this.state.team1Idx}
+                team2Idx={this.state.team2Idx}
+                handleClick={this.handleClick}
+                team1pokemonHP={this.state.team1pokemonHP}
+                team2pokemonHP={this.state.team2pokemonHP}
+              />
+              </div>
             </div>
 
           </div>
