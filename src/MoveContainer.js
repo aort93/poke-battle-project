@@ -8,7 +8,7 @@ class MoveContainer extends React.Component {
       <div>
         {this.props.toggle ?
           <React.Fragment>
-          <h3>Trainer's 1 Turn</h3>
+          <h2>Trainer's 1 ({this.props.team1[this.props.team1Idx].name}) Turn</h2>
           <div className='move-container'>
             <button id='move1' class="ui button" onClick={() => this.props.handleClick(0, this.props.audio, this.props.audio2)}>{this.props.team1[this.props.team1Idx].moves[0].name}</button>
 
@@ -21,7 +21,7 @@ class MoveContainer extends React.Component {
           </React.Fragment>
         :
         <React.Fragment>
-          <h3>Trainer's 2 Turn</h3>
+          <h2>Trainer's 2 ({this.props.team2[this.props.team2Idx].name}) Turn</h2>
           <div className='move-container'>
 
             <button id='move1' class="ui button" onClick={() => this.props.handleClick(0, this.props.audio, this.props.audio2)}>{this.props.team2[this.props.team2Idx].moves[0].name}</button>
