@@ -110,7 +110,7 @@ class Battlegrounds extends React.Component {
   render() {
     const audio = new Audio("hit.mp3")
     const audio2 = new Audio("new.mp3")
-    console.log(audio)
+
     return (
       (this.state.winner2 || this.state.winner1) ?
       <div>
@@ -149,6 +149,8 @@ class Battlegrounds extends React.Component {
                 toggle={this.state.toggle}
                 team1Idx={this.state.team1Idx}
                 team2Idx={this.state.team2Idx}
+                audio={audio}
+                audio2={audio2}
                 handleClick={this.handleClick}
                 team1pokemonHP={this.state.team1pokemonHP}
                 team2pokemonHP={this.state.team2pokemonHP}
@@ -157,18 +159,7 @@ class Battlegrounds extends React.Component {
             </div>
 
           </div>
-          <MoveContainer
-            team1={this.props.team1}
-            team2={this.props.team2}
-            toggle={this.state.toggle}
-            team1Idx={this.state.team1Idx}
-            team2Idx={this.state.team2Idx}
-            handleClick={this.handleClick}
-            audio={audio}
-            audio2={audio2}
-            team1pokemonHP={this.state.team1pokemonHP}
-            team2pokemonHP={this.state.team2pokemonHP}
-          />
+
 
         </div>
     )
