@@ -25,12 +25,14 @@ class App extends React.Component {
     })
   }
 
+  //clicke button for the start page
   handleStart = (pageStr) => {
     this.setState({
       page: pageStr
     })
   }
 
+  ////Render our pgae depending on the state of the page on our click buttons
   renderPage = () => {
     switch (this.state.page){
       case "index":
@@ -58,6 +60,7 @@ class App extends React.Component {
     }
   }
 
+  //Select pokemon from list and add them to their repsective user's team
   handleSelect = (poke, player) => {
     if ( !this.state.team1.includes(poke) && player === 'p1' && this.state.team1.length < 6) {
       this.setState({
@@ -70,14 +73,7 @@ class App extends React.Component {
     }
   }
 
-  resetGame = () => {
-    this.setState({
-      page: "index",
-      team1: [],
-      team2: []
-    })
-  }
-
+  //Filter all the pokemomn that was cliked on the POkemon team list
   handleRemoveFromTeam1 = (pokeObj) => {
     const removed = [...this.state.team1].filter(poke => {
       return poke.name !== pokeObj.name
@@ -95,6 +91,17 @@ class App extends React.Component {
       team2: removed
     })
   }
+
+
+  //inital game logi which will be used to reset our code
+  resetGame = () => {
+    this.setState({
+      page: "index",
+      team1: [],
+      team2: []
+    })
+  }
+
 
 
   render() {

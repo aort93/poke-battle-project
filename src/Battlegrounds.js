@@ -2,6 +2,8 @@ import React from 'react'
 import './canvas.css';
 import MoveContainer from './MoveContainer'
 import WinnerPage from './WinnerPage'
+import { Button, Progress } from "semantic-ui-react";
+
 
 
 
@@ -17,6 +19,8 @@ class Battlegrounds extends React.Component {
     winner1: false,
     winner2: false
   }
+
+
 
   handleClick = (index) => {
     let hpAfterDmg1 = this.state.team1pokemonHP - this.props.team2[this.state.team2Idx].moves[index].damage
@@ -105,8 +109,19 @@ class Battlegrounds extends React.Component {
       :
         <div className='supercontainer'>
           <h1>Time to Battle</h1>
-          <img className='team1' src={this.props.team1[this.state.team1Idx].frontURL} />
-          <img className='team2' src={this.props.team2[this.state.team2Idx].backURL} />
+          <div className="battle-grid">
+            <div>
+            <h3>Trainer 1: {this.props.team1[this.state.team1Idx].name}</h3>
+            <Progress percent={this.state.team1pokemonHP} indicating />
+            </div>
+            <img className='team1' src={this.props.team1[this.state.team1Idx].frontURL} />
+            <img className='team2' src={this.props.team2[this.state.team2Idx].backURL} />
+            <div>
+              <h3>Trainer 2: {this.props.team2[this.state.team2Idx].name}</h3>
+              <Progress percent={this.state.team2pokemonHP} indicating />
+            </div>
+
+          </div>
           <MoveContainer
             team1={this.props.team1}
             team2={this.props.team2}
@@ -117,6 +132,7 @@ class Battlegrounds extends React.Component {
             team1pokemonHP={this.state.team1pokemonHP}
             team2pokemonHP={this.state.team2pokemonHP}
           />
+
         </div>
     )
   }

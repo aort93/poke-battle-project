@@ -4,23 +4,21 @@
   position: relative;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-image: url('/battlegrounds.jpg');
+  background-image: url('/new_back.png');
 }
 
 
-.team1{
-  position: static;
-  margin-left: 48%;
-  height: 47vh;
-  width: 47vh
+.team1 {
+  height: 35vh;
+  width: 35vw
+}
+
+#team1hp {
 }
 
 .team2{
-  position: static;
-  margin-right: 40%;
-  margin-top: -11%;
-  height: 45vh;
-  width: 45vh;
+  height: 49vh;
+  width: 49vh;
 }
 
 .App-header {
@@ -40,11 +38,64 @@
 
 .move-container {
   /* height: 20%; */
+  position:relative;
   display: grid;
   grid-gap: 5px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 }
+
+.battle-grid {
+  position: relative;
+  display: grid;
+  display: 5px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+
+
+/*
+.team1{
+  position: absolute;
+  margin-left: 6%;
+  margin-top: -18%;
+  height: 45vh;
+  width: 45vh
+}
+
+#team1hp {
+  text-align: left;
+  margin-left: 38%;
+  margin-top: 7%;
+  z-index: 5;
+}
+
+#team2hp {
+
+}
+
+.team2{
+  position: absolute;
+  margin-left: -40%;
+  margin-top: 4%;
+  height: 50vh;
+  width: 50vh;
+}
+
+
+} */
+
+/* <Button id='move' animated='fade'>
+  <Button.Content visible><p onClick={() => this.props.handleClick(0)} className='move1'>{poke[idx].moves[0].name}</p>
+  </Button.Content>
+  <Button.Content onClick={() => this.props.handleClick(0)} hidden>ATTACK</Button.Content>
+</Button> */
+
+/* #move {
+  display: flex;
+  float: left;
+} */
 
 /* .team1sticky {
   position: -webkit-sticky;
