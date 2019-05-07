@@ -1,8 +1,8 @@
 import React from 'react'
 
 class MoveContainer extends React.Component {
-
   render() {
+
     console.log(this.props.team1[this.props.team1Idx])
     return (
       <div>
@@ -28,9 +28,8 @@ class MoveContainer extends React.Component {
             <br/>
             <p4 id='move4' onClick={() => this.props.handleClick(3)}>{this.props.team2[this.props.team2Idx].moves[3].name}</p4>
             <br/>
-            <p5 id='hp'>{this.props.team2pokemonHP}</p5>
+            <p5 id='hp'>{hp}</p5>
           </div>
-        }
       </div>
     )
   }
