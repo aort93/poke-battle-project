@@ -29,6 +29,15 @@
   background-image: url('/background.png');
 }
 
+.winner-page {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url('/win.jpg');
+}
+
 /* .team1sticky {
   position: -webkit-sticky;
   position: sticky;

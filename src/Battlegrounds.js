@@ -1,6 +1,7 @@
 import React from 'react'
 import './canvas.css';
 import MoveContainer from './MoveContainer'
+import WinnerPage from './WinnerPage'
 
 
 
@@ -17,11 +18,13 @@ class Battlegrounds extends React.Component {
     winner2: false
   }
 
-  handleClick = () => {
-    let hpAfterDmg1 = this.state.team1pokemonHP - this.props.team2[this.state.team2Idx].move.damage
-    let hpAfterDmg2 = this.state.team2pokemonHP - this.props.team1[this.state.team1Idx].move.damage
+  handleClick = (index) => {
+    let hpAfterDmg1 = this.state.team1pokemonHP - this.props.team2[this.state.team2Idx].moves[index].damage
+    let hpAfterDmg2 = this.state.team2pokemonHP - this.props.team1[this.state.team1Idx].moves[index].damage
     let nextIdx1 = this.state.team1Idx + 1
     let nextIdx2 = this.state.team2Idx + 1
+
+    console.log(hpAfterDmg1)
 
     if (this.state.team1Idx < 6 && this.state.team2Idx < 6) {
       if ( this.state.toggle ) { //when its trainer 1
@@ -39,7 +42,7 @@ class Battlegrounds extends React.Component {
           }
         } else {
           this.setState((prevState) => ({
-              team2pokemonHP: prevState.team2pokemonHP - this.props.team1[this.state.team1Idx].move.damage,
+              team2pokemonHP: prevState.team2pokemonHP - this.props.team1[this.state.team1Idx].moves[index].damage,
               toggle: !prevState.toggle
           }))
         }
@@ -58,7 +61,7 @@ class Battlegrounds extends React.Component {
           }
         } else {
           this.setState((prevState) => ({
-              team1pokemonHP: prevState.team1pokemonHP - this.props.team2[this.state.team2Idx].move.damage,
+              team1pokemonHP: prevState.team1pokemonHP - this.props.team2[this.state.team2Idx].moves[index].damage,
               toggle: !prevState.toggle
           }))
         }
@@ -93,25 +96,20 @@ class Battlegrounds extends React.Component {
     })
   }
 
-  handleClickFinal = () => {
-    this.battlegroundsStateReset()
-    this.props.reset("index")
-  }
-
   render() {
-    console.log(this.state.winner1, this.state.winner2)
-    console.log(this.state.team1Idx, this.state.team2Idx)
     return (
-       (this.state.winner2 || this.state.winner1) ?
-        <div>
-          <h1>Winner</h1>
-          <br/>
-          <br/>
-          <h2>Is.....</h2>
-          {this.state.winner2 ? "Player 2" : "Player 1"}
-          <button onClick={this.handleClickFinal}>Reset</button>
-        </div>
-        :
+      (this.state.winner2 || this.state.winner1) ?
+      <div>
+        <WinnerPage
+          winner1={this.state.winner1}
+          winner2={this.state.winner2}
+          reset={this.props.reset}
+          battlegroundsStateReset={this.battlegroundsStateReset}
+          team1={this.props.team1}
+          team2={this.props.team2}
+        />
+      </div>
+      :
         <div className='supercontainer'>
           <h1>Time to Battle</h1>
           <img className='team1' src={this.props.team1[this.state.team1Idx].frontURL} />
@@ -127,9 +125,9 @@ class Battlegrounds extends React.Component {
             team2pokemonHP={this.state.team2pokemonHP}
           />
         </div>
-
     )
   }
+
 }
 
 export default Battlegrounds

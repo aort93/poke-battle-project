@@ -29,7 +29,7 @@ class Player2Select extends React.Component {
         <h2>Team</h2>
         <Card.Group itemsPerRow={6}>{this.renderContainer()}</Card.Group>
         <br/>
-        <button class="ui button" onClick={() => this.props.handlePages('index')}>New Battle</button>
+        <button class="ui button" onClick={() => this.props.handlePages('index')}>Restart</button>
         <button class="ui button" onClick={() => this.props.handlePages('p1')}>P1 Select</button>
         { this.props.team.length === 6 ? <button class="ui button" onClick={() => this.props.handlePages('battle')}>Battle!</button> : null }
         <h1>Pokemons</h1>

@@ -7,7 +7,6 @@ const PokeCard = (props) => {
      return props.handleSelect(props.pokemon, props.player)
   }
 
-console.log(props.pokemon)
     return (
       // <div player={props.player} onClick={handleClick}>
       //   <p>{props.pokemon.name[0].toUpperCase() + props.pokemon.name.slice(1)}</p>
