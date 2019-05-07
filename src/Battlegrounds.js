@@ -3,6 +3,8 @@ import './canvas.css';
 import MoveContainer from './MoveContainer'
 import WinnerPage from './WinnerPage'
 import { Button, Progress } from "semantic-ui-react";
+import { Form, Grid, Image, Transition } from 'semantic-ui-react'
+
 
 
 
@@ -17,7 +19,9 @@ class Battlegrounds extends React.Component {
     team1Idx: 0,
     team2Idx: 0,
     winner1: false,
-    winner2: false
+    winner2: false,
+    visible: true,
+    visible1: true
   }
 
 
@@ -42,6 +46,7 @@ class Battlegrounds extends React.Component {
             }))
           }
         } else {
+          this.toggleVisibility1()
           this.setState((prevState) => ({
               team2pokemonHP: prevState.team2pokemonHP - this.props.team1[this.state.team1Idx].moves[index].damage,
               toggle: !prevState.toggle
@@ -61,6 +66,7 @@ class Battlegrounds extends React.Component {
             }))
           }
         } else {
+          this.toggleVisibility()
           this.setState((prevState) => ({
               team1pokemonHP: prevState.team1pokemonHP - this.props.team2[this.state.team2Idx].moves[index].damage,
               toggle: !prevState.toggle
@@ -93,6 +99,13 @@ class Battlegrounds extends React.Component {
     })
   }
 
+  toggleVisibility = () =>
+    this.setState(prevState => ({ visible: !prevState.visible }));
+
+  toggleVisibility1 = () =>
+    this.setState(prevState => ({ visible1: !prevState.visible1 }));
+
+
   render() {
     return (
       (this.state.winner2 || this.state.winner1) ?
@@ -114,8 +127,12 @@ class Battlegrounds extends React.Component {
             <h3>Trainer 1: {this.props.team1[this.state.team1Idx].name}</h3>
             <Progress percent={this.state.team1pokemonHP} indicating />
             </div>
-            <img className='team1' src={this.props.team1[this.state.team1Idx].frontURL} />
-            <img className='team2' src={this.props.team2[this.state.team2Idx].backURL} />
+            <Transition animation={'shake'} duration={500} visible={this.state.visible}>
+              <img className='team1' src={this.props.team1[this.state.team1Idx].frontURL} />
+            </Transition>
+            <Transition animation={'shake'} duration={500} visible={this.state.visible1}>
+              <img className='team2' src={this.props.team2[this.state.team2Idx].backURL} />
+            </Transition>
             <div>
               <h3>Trainer 2: {this.props.team2[this.state.team2Idx].name}</h3>
               <Progress percent={this.state.team2pokemonHP} indicating />
