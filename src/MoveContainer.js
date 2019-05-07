@@ -1,8 +1,8 @@
 import React from 'react'
 
 class MoveContainer extends React.Component {
-
   render() {
+
     console.log(this.props.team1[this.props.team1Idx])
     return (
       <div>
@@ -22,7 +22,7 @@ class MoveContainer extends React.Component {
         :
         <React.Fragment>
           <div className='move-container'>
-          
+
             <button id='move1' class="ui button" onClick={() => this.props.handleClick(0)}>{this.props.team2[this.props.team2Idx].moves[0].name}</button>
 
             <button id='move2' class="ui button" onClick={() => this.props.handleClick(1)}>{this.props.team2[this.props.team2Idx].moves[1].name}</button>

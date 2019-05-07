@@ -24,9 +24,6 @@ class Battlegrounds extends React.Component {
     let nextIdx1 = this.state.team1Idx + 1
     let nextIdx2 = this.state.team2Idx + 1
 
-    console.log(hpAfterDmg1)
-
-    if (this.state.team1Idx < 6 && this.state.team2Idx < 6) {
       if ( this.state.toggle ) { //when its trainer 1
         if ( hpAfterDmg2 <= 0) {
           if (this.state.team2Idx < 5) {
@@ -66,10 +63,6 @@ class Battlegrounds extends React.Component {
           }))
         }
       }
-    } else {
-      console.log('done')
-    }
-
 
 
     if (this.state.team1Idx === 6 && this.state.team2Idx !== 6) {
