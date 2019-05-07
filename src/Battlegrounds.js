@@ -5,11 +5,8 @@ import WinnerPage from './WinnerPage'
 import { Button, Progress } from "semantic-ui-react";
 import { Form, Grid, Image, Transition } from 'semantic-ui-react'
 
-
-
-
-
 class Battlegrounds extends React.Component {
+
 
   state = {
     //if true display player1
@@ -26,7 +23,7 @@ class Battlegrounds extends React.Component {
 
 
 
-  handleClick = (index) => {
+  handleClick = (index, audio, audio2) => {
     let hpAfterDmg1 = this.state.team1pokemonHP - this.props.team2[this.state.team2Idx].moves[index].damage
     let hpAfterDmg2 = this.state.team2pokemonHP - this.props.team1[this.state.team1Idx].moves[index].damage
     let nextIdx1 = this.state.team1Idx + 1
@@ -35,6 +32,7 @@ class Battlegrounds extends React.Component {
       if ( this.state.toggle ) { //when its trainer 1
         if ( hpAfterDmg2 <= 0) {
           if (this.state.team2Idx < 5) {
+            audio2.play()
             this.setState((prevState) => ({
               team2pokemonHP: 100,
               team2Idx: prevState.team2Idx + 1,
@@ -47,6 +45,7 @@ class Battlegrounds extends React.Component {
           }
         } else {
           this.toggleVisibility1()
+          audio.play()
           this.setState((prevState) => ({
               team2pokemonHP: prevState.team2pokemonHP - this.props.team1[this.state.team1Idx].moves[index].damage,
               toggle: !prevState.toggle
@@ -55,6 +54,7 @@ class Battlegrounds extends React.Component {
       } else { //when its trainer 2
         if ( hpAfterDmg1 <= 0) {
           if( this.state.team1Idx < 5) {
+            audio2.play()
             this.setState((prevState) => ({
               team1pokemonHP: 100,
               team1Idx: prevState.team1Idx + 1,
@@ -67,6 +67,7 @@ class Battlegrounds extends React.Component {
           }
         } else {
           this.toggleVisibility()
+          audio.play()
           this.setState((prevState) => ({
               team1pokemonHP: prevState.team1pokemonHP - this.props.team2[this.state.team2Idx].moves[index].damage,
               toggle: !prevState.toggle
@@ -107,6 +108,9 @@ class Battlegrounds extends React.Component {
 
 
   render() {
+    const audio = new Audio("hit.mp3")
+    const audio2 = new Audio("new.mp3")
+    console.log(audio)
     return (
       (this.state.winner2 || this.state.winner1) ?
       <div>
@@ -121,7 +125,9 @@ class Battlegrounds extends React.Component {
       </div>
       :
         <div className='supercontainer'>
+
           <h1>Poke-Battlegrounds</h1>
+
           <div className="battle-grid">
             <div>
             <h3>Trainer 1: {this.props.team1[this.state.team1Idx].name}</h3>
@@ -158,6 +164,8 @@ class Battlegrounds extends React.Component {
             team1Idx={this.state.team1Idx}
             team2Idx={this.state.team2Idx}
             handleClick={this.handleClick}
+            audio={audio}
+            audio2={audio2}
             team1pokemonHP={this.state.team1pokemonHP}
             team2pokemonHP={this.state.team2pokemonHP}
           />
