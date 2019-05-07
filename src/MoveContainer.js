@@ -3,27 +3,30 @@ import React from 'react'
 class MoveContainer extends React.Component {
   render() {
 
-    let poke, idx, hp;
-    if (this.props.toggle) {
-      poke = this.props.team1
-      idx = this.props.team1Idx
-      hp = this.props.team1pokemonHP
-    } else {
-      poke = this.props.team2
-      idx = this.props.team2Idx
-      hp = this.props.team2pokemonHP
-    }
-
+    console.log(this.props.team1[this.props.team1Idx])
     return (
       <div>
-          <div onClick={this.props.handleClick}>
-            <p1 id='move1'>{poke[idx].move.name}</p1>
+        {this.props.toggle ?
+          <div>
+            <p1 id='move1' onClick={() => this.props.handleClick(0)}>{this.props.team1[this.props.team1Idx].moves[0].name}</p1>
             <br/>
-            <p2 id='move2'>Water</p2>
+            <p2 id='move2' onClick={() => this.props.handleClick(1)}>{this.props.team1[this.props.team1Idx].moves[1].name}</p2>
             <br/>
-            <p3 id='move3'>Air</p3>
+            <p3 id='move3' onClick={() => this.props.handleClick(2)}>{this.props.team1[this.props.team1Idx].moves[2].name}</p3>
             <br/>
-            <p4 id='move4'>Earth</p4>
+            <p4 id='move4' onClick={() => this.props.handleClick(3)}>{this.props.team1[this.props.team1Idx].moves[3].name}</p4>
+            <br/>
+            <p5 id='hp'>{this.props.team1pokemonHP}</p5>
+          </div>
+        :
+          <div>
+            <p1 id='move1' onClick={() => this.props.handleClick(0)}>{this.props.team2[this.props.team2Idx].moves[0].name}</p1>
+            <br/>
+            <p2 id='move2' onClick={() => this.props.handleClick(1)}>{this.props.team2[this.props.team2Idx].moves[1].name}</p2>
+            <br/>
+            <p3 id='move3' onClick={() => this.props.handleClick(2)}>{this.props.team2[this.props.team2Idx].moves[2].name}</p3>
+            <br/>
+            <p4 id='move4' onClick={() => this.props.handleClick(3)}>{this.props.team2[this.props.team2Idx].moves[3].name}</p4>
             <br/>
             <p5 id='hp'>{hp}</p5>
           </div>
