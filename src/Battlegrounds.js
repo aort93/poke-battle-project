@@ -7,20 +7,27 @@ import { Form, Grid, Image, Transition } from 'semantic-ui-react'
 import multiplier from './Multiplier'
 
 class Battlegrounds extends React.Component {
-
-
-  state = {
-    //if true display player1
-    toggle: true,
-    team1pokemonHP: 100,
-    team2pokemonHP: 100,
-    team1Idx: 0,
-    team2Idx: 0,
-    winner1: false,
-    winner2: false,
-    visible: true,
-    visible1: true
+  constructor() {
+    super()
+    this.audio = new Audio("battle.mp3")
+    this.state = {
+      //if true display player1
+      toggle: true,
+      team1pokemonHP: 100,
+      team2pokemonHP: 100,
+      team1Idx: 0,
+      team2Idx: 0,
+      winner1: false,
+      winner2: false,
+      visible: true,
+      visible1: true
+    }
   }
+
+  componentDidMount() {
+    this.audio.play()
+  }
+
 
   damageMultiplier = (attackType, attackDmg, pokeType, pokeHp) => {
     let newHp;
@@ -71,7 +78,11 @@ class Battlegrounds extends React.Component {
           } else {
             this.setState((prevState) => ({
               winner1: !prevState.winner1
-            }))
+            }), () => {
+              this.audio.pause()
+              this.audio.currentTime = 0;
+            })
+
           }
         } else {
           this.toggleVisibility1()
@@ -99,7 +110,10 @@ class Battlegrounds extends React.Component {
           } else {
             this.setState((prevState) => ({
               winner2: !prevState.winner2
-            }))
+            }), () => {
+              this.audio.pause()
+              this.audio.currentTime = 0;
+            })
           }
         } else {
           this.toggleVisibility()
