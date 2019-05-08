@@ -36,6 +36,7 @@
   background-image: url('/win.jpg');
 }
 
+
 .move-container {
   /* height: 20%; */
   position:relative;
@@ -52,54 +53,3 @@
   grid-template-columns: 1fr  1fr;
   grid-template-rows: 1fr 1fr ;
 }
-
-
-
-/*
-.team1{
-  position: absolute;
-  margin-left: 6%;
-  margin-top: -18%;
-  height: 45vh;
-  width: 45vh
-}
-
-#team1hp {
-  text-align: left;
-  margin-left: 38%;
-  margin-top: 7%;
-  z-index: 5;
-}
-
-#team2hp {
-
-}
-
-.team2{
-  position: absolute;
-  margin-left: -40%;
-  margin-top: 4%;
-  height: 50vh;
-  width: 50vh;
-}
-
-
-} */
-
-/* <Button id='move' animated='fade'>
-  <Button.Content visible><p onClick={() => this.props.handleClick(0)} className='move1'>{poke[idx].moves[0].name}</p>
-  </Button.Content>
-  <Button.Content onClick={() => this.props.handleClick(0)} hidden>ATTACK</Button.Content>
-</Button> */
-
-/* #move {
-  display: flex;
-  float: left;
-} */
-
-/* .team1sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-} */

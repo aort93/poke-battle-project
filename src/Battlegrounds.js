@@ -4,6 +4,7 @@ import MoveContainer from './MoveContainer'
 import WinnerPage from './WinnerPage'
 import { Button, Progress } from "semantic-ui-react";
 import { Form, Grid, Image, Transition } from 'semantic-ui-react'
+import multiplier from './Multiplier'
 
 class Battlegrounds extends React.Component {
 
@@ -21,6 +22,28 @@ class Battlegrounds extends React.Component {
     visible1: true
   }
 
+  damageMultiplier = (attackType, attackDmg, pokeType, pokeHp) => {
+    let newHp;
+      console.log('attack type', attackType);
+      console.log('attackDmg:',attackDmg)
+      console.log('opp type', pokeType)
+      console.log('weakness', multiplier[pokeType].weakness)
+      console.log('resistance',multiplier[pokeType].resistance)
+
+    if (multiplier[pokeType].weakness.includes(attackType)) {
+      console.log(1.5 * attackDmg);
+      newHp = pokeHp - (1.5 * attackDmg)
+      return newHp
+    } else if (multiplier[pokeType].resistance.includes(attackType)) {
+      console.log(.5 * attackDmg);
+      return newHp = pokeHp - (.5 * attackDmg)
+      return newHp
+    } else {
+      newHp = pokeHp - attackDmg
+      return newHp
+    }
+  }
+
 
 
   handleClick = (index, audio, audio2) => {
@@ -29,7 +52,14 @@ class Battlegrounds extends React.Component {
     let nextIdx1 = this.state.team1Idx + 1
     let nextIdx2 = this.state.team2Idx + 1
 
+
       if ( this.state.toggle ) { //when its trainer 1
+        let attackType = this.props.team1[this.state.team1Idx].moves[index].move_type
+        let attackDmg = this.props.team1[this.state.team1Idx].moves[index].damage
+        let pokeHp = this.state.team2pokemonHP
+        let pokeType = this.props.team2[this.state.team2Idx].type_name
+        let hpAfterDmg2 = this.damageMultiplier(attackType, attackDmg, pokeType, pokeHp)
+
         if ( hpAfterDmg2 <= 0) {
           if (this.state.team2Idx < 5) {
             audio2.play()
@@ -47,11 +77,17 @@ class Battlegrounds extends React.Component {
           this.toggleVisibility1()
           audio.play()
           this.setState((prevState) => ({
-              team2pokemonHP: prevState.team2pokemonHP - this.props.team1[this.state.team1Idx].moves[index].damage,
+              team2pokemonHP: hpAfterDmg2,
               toggle: !prevState.toggle
           }))
         }
       } else { //when its trainer 2
+        let attackType = this.props.team2[this.state.team2Idx].moves[index].move_type
+        let attackDmg = this.props.team2[this.state.team2Idx].moves[index].damage
+        let pokeHp = this.state.team1pokemonHP
+        let pokeType = this.props.team1[this.state.team1Idx].type_name
+        let hpAfterDmg1 = this.damageMultiplier(attackType, attackDmg, pokeType, pokeHp)
+
         if ( hpAfterDmg1 <= 0) {
           if( this.state.team1Idx < 5) {
             audio2.play()
@@ -69,7 +105,7 @@ class Battlegrounds extends React.Component {
           this.toggleVisibility()
           audio.play()
           this.setState((prevState) => ({
-              team1pokemonHP: prevState.team1pokemonHP - this.props.team2[this.state.team2Idx].moves[index].damage,
+              team1pokemonHP: hpAfterDmg1 ,
               toggle: !prevState.toggle
           }))
         }

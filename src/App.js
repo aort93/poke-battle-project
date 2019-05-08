@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    fetch('http://localhost:3000/pokemons')
+    fetch('http://localhost:3090/pokemons')
     .then( r => r.json())
     .then( pokeData => {
       this.setState({

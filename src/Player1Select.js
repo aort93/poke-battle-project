@@ -24,8 +24,9 @@ class Player1Select extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="player1page">
         <h1>Trainer 1</h1>
+        <h3>Choose your six pokemon</h3>
           <div className="team1sticky">
               <h2>Team</h2>
               <Card.Group itemsPerRow={6}>{this.renderContainer()}</Card.Group>

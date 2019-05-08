@@ -16,7 +16,7 @@ class Player2Select extends React.Component {
   renderContainer = () => {
     return this.props.team.map(pokemon => {
       return <SelectContainer key={ v4() } pokemon={pokemon}
-      handleRemoveFromTeam={this.props.handleRemoveFromTeam}
+                handleRemoveFromTeam={this.props.handleRemoveFromTeam}
               />
     })
   }
@@ -26,6 +26,7 @@ class Player2Select extends React.Component {
     return (
       <div>
         <h1>Trainer 2</h1>
+        <h3>Choose your six pokemon</h3>
         <h2>Team</h2>
         <Card.Group itemsPerRow={6}>{this.renderContainer()}</Card.Group>
         <br/>

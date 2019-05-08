@@ -2,8 +2,6 @@ import React from 'react'
 
 class MoveContainer extends React.Component {
   render() {
-
-    console.log(this.props.team1[this.props.team1Idx])
     return (
       <div>
         {this.props.toggle ?
