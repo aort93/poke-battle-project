@@ -4,6 +4,9 @@ import SelectContainer from './SelectContainer'
 import v4 from 'uuid'
 
 class WinnerPage extends React.Component {
+  componentDidMount() {
+    console.log('mount')
+  }
 
   handleClick = () => {
     this.props.battlegroundsStateReset()
