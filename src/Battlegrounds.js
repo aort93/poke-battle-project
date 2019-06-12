@@ -11,7 +11,6 @@ class Battlegrounds extends React.Component {
     super()
     this.audio = new Audio("battle.mp3")
     this.state = {
-      //if true display player1
       toggle: true,
       team1pokemonHP: 100,
       team2pokemonHP: 100,
